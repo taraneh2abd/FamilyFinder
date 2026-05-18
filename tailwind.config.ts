@@ -2,18 +2,30 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+	darkMode: "class",
+
 	content: [
-		"./app/**/*.{js,ts,jsx,tsx}", // App Router
-		"./pages/**/*.{js,ts,jsx,tsx}", // Pages Router
+		"./app/**/*.{js,ts,jsx,tsx}",
+		"./pages/**/*.{js,ts,jsx,tsx}",
 		"./components/**/*.{js,ts,jsx,tsx}",
 	],
+
 	theme: {
 		extend: {
 			fontFamily: {
-				vazirmatn: ["Vazirmatn", "Roboto"],
+				sans: ["Vazirmatn", "Roboto", "system-ui"],
+			},
+
+			colors: {
+				background: "var(--background)",
+				foreground: "var(--text)",
+				primary: "var(--primary)",
+				secondary: "var(--secondary)",
+				accent: "var(--accent)",
 			},
 		},
 	},
+
 	plugins: [],
 };
 
