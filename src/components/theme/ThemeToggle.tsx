@@ -1,29 +1,26 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
-import { MoonIcon, SunIcon } from "lucide-react";
-
-import { Switch } from "@/components/switch";
-import { cn } from "@/lib/utils";
+import * as React from "react";
+import * as SwitchPrimitives from "@radix-ui/react-switch";
+import { SunIcon, MoonIcon } from "lucide-react";
+import styles from "./ThemeToggle.module.scss";
 
 export default function ThemeToggle() {
-	const id = useId();
+	const [mounted, setMounted] = React.useState(false);
+	const [isDark, setIsDark] = React.useState(false);
 
-	const [mounted, setMounted] = useState(false);
-	const [isDark, setIsDark] = useState(false);
-
-	useEffect(() => {
+	React.useEffect(() => {
 		setMounted(true);
 
-		const savedTheme = localStorage.getItem("theme");
+		const saved = localStorage.getItem("theme");
 
-		if (savedTheme === "dark") {
+		if (saved === "dark") {
 			setIsDark(true);
 			document.documentElement.classList.add("dark");
 		}
 	}, []);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (!mounted) return;
 
 		if (isDark) {
@@ -38,44 +35,41 @@ export default function ThemeToggle() {
 	if (!mounted) return null;
 
 	return (
-		<div className="group inline-flex items-center gap-2">
-			<span
-				id={`${id}-light`}
-				className={cn(
-					"cursor-pointer text-left text-sm font-medium transition-colors",
-					isDark && "text-foreground/50"
-				)}
-				aria-controls={id}
-				onClick={() => setIsDark(false)}
-			>
+		<SwitchPrimitives.Root
+			checked={isDark}
+			onCheckedChange={setIsDark}
+			className={styles.toggle}
+		>
+			{/* LEFT ICON */}
+			<div className={styles.iconLeft}>
 				<SunIcon
-					className="size-4"
-					aria-hidden="true"
+					className={`${styles.icon} ${
+						isDark ? styles.sunInactive : styles.sunActive
+					}`}
 				/>
-			</span>
+			</div>
 
-			<Switch
-				id={id}
-				checked={isDark}
-				onCheckedChange={setIsDark}
-				aria-labelledby={`${id}-light ${id}-dark`}
-				aria-label="Toggle theme"
-			/>
-
-			<span
-				id={`${id}-dark`}
-				className={cn(
-					"cursor-pointer text-right text-sm font-medium transition-colors",
-					!isDark && "text-foreground/50"
-				)}
-				aria-controls={id}
-				onClick={() => setIsDark(true)}
-			>
+			{/* RIGHT ICON */}
+			<div className={styles.iconRight}>
 				<MoonIcon
-					className="size-4"
-					aria-hidden="true"
+					className={`${styles.icon} ${
+						isDark ? styles.moonActive : styles.moonInactive
+					}`}
 				/>
-			</span>
-		</div>
+			</div>
+
+			{/* THUMB */}
+			<SwitchPrimitives.Thumb
+				className={`${styles.thumb} ${
+					isDark ? styles.checked : ""
+				}`}
+			>
+				{isDark ? (
+					<MoonIcon className="w-3 h-3 text-[var(--primary)]" />
+				) : (
+					<SunIcon className="w-3 h-3 text-[var(--primary)]" />
+				)}
+			</SwitchPrimitives.Thumb>
+		</SwitchPrimitives.Root>
 	);
 }

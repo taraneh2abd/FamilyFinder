@@ -5,8 +5,7 @@ import InfoCard from "@/components/InfoCard";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import AuthButton from "@/components/AuthButton/AuthButton"
 import React, { useEffect, useState } from "react";
-
-
+import AlertSocialComponent from "@/components/Toast/Toast"
 
 export default function Home() {
 	const [loading, setLoading] = useState(false);
@@ -26,12 +25,15 @@ export default function Home() {
 
 					<ThemeToggle />
 
+					<AlertSocialComponent/>
+					
 					<AuthButton
 				onClick={() => console.log("click")}
 				loading={false}
 				>
 				Login
 									</AuthButton>
+									
 
 
 				</div>

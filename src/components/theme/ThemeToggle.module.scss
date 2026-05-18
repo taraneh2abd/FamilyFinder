@@ -1,0 +1,110 @@
+// ─── THEME TOGGLE ────────────────────────────────────────────────────────────
+
+$switch-padding: 0.25em;
+
+.toggle {
+  font-size: 16px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  width: 4em;
+  height: 2em;
+  border-radius: 999px;
+
+  cursor: pointer;
+  border: none;
+  outline: none;
+
+  transition: background 0.3s ease;
+
+  // همیشه primary کامل
+  background: var(--secondary);
+
+  &:focus-visible {
+    box-shadow: 0 0 0 0.2em rgba(var(--primary-rgb), 0.4);
+  }
+}
+
+// ─── ICON WRAPPERS ───────────────────────────────────────────────────────────
+
+.iconLeft,
+.iconRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: calc(1.5em + 2 * #{$switch-padding});
+  pointer-events: none;
+}
+
+.iconLeft {
+  left: 0;
+}
+
+.iconRight {
+  right: 0;
+}
+
+// ─── ICONS (FIX اصلی اینجاست) ───────────────────────────────────────────────
+
+.icon {
+  width: 1em;        // ✅ FIX: سایز ثابت و یکسان
+  height: 1em;       // ✅ FIX: سایز ثابت و یکسان
+  flex-shrink: 0;    // جلوگیری از تغییر سایز در flex
+  display: block;    // جلوگیری از baseline shift
+  transition: opacity 0.3s ease;
+}
+
+// states (بدون تغییر سایز، فقط opacity / color)
+
+.sunActive {
+  opacity: 1;
+  color: #fff;
+}
+
+.sunInactive {
+  opacity: 1;
+  color: #fff;
+}
+
+.moonActive {
+  opacity: 1;
+  color: #000;
+}
+
+.moonInactive {
+  opacity: 1;
+  color: var(--secondary-rgb);
+}
+
+// ─── THUMB ───────────────────────────────────────────────────────────────────
+
+.thumb {
+  position: absolute;
+  top: $switch-padding;
+  left: $switch-padding;
+
+  width: calc(2em - 2 * #{$switch-padding});
+  height: calc(2em - 2 * #{$switch-padding});
+  border-radius: 999px;
+
+  background: var(--background);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.3s ease;
+}
+
+// ─── CHECKED STATE ──────────────────────────────────────────────────────────
+
+.checked {
+  transform: translateX(2em);
+}
