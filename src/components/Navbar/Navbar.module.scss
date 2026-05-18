@@ -1,0 +1,417 @@
+// ─────────────────────────────────────────────
+//  Navbar.module.scss  — Floating Center Navbar
+// ─────────────────────────────────────────────
+
+$border-width: 4px;
+$nav-height-desktop: 72px;
+$nav-height-mobile: 60px;
+$transition: 200ms ease;
+
+// ── Header shell ──────────────────────────────
+// ── Header shell ──────────────────────────────
+.header {
+  position: sticky;
+  top: 1rem;
+  z-index: 100;
+
+  width: calc(100% - 2rem);
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  // ✅ new navbar color
+  background-color: var(--navbarcolor);
+
+  // ❌ border removed
+  border: none;
+
+  // ✅ more rounded
+  border-radius: 999px;
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 0 20px rgba(var(--accent-rgb), 0.12);
+
+  backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    width: calc(100% - 1rem);
+    top: 0.5rem;
+
+    // ✅ still rounded on mobile
+    border-radius: 24px;
+  }
+}
+
+// ── Inner row ─────────────────────────────────
+.inner {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+
+  padding: 0 2rem;
+
+  height: $nav-height-desktop;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+    height: $nav-height-mobile;
+  }
+}
+
+// ── Logo ──────────────────────────────────────
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+
+  color: var(--foreground);
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  span {
+    color: var(--accent);
+  }
+
+  &:hover span {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+// ── Desktop nav ───────────────────────────────
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.navLink {
+  position: relative;
+
+  padding: 0.45rem 0.85rem;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  color: var(--foreground);
+
+  text-decoration: none;
+  border-radius: 6px;
+
+  transition:
+    color $transition,
+    background-color $transition;
+
+  cursor: pointer;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+
+    transform: translateX(-50%) scaleX(0);
+
+    height: 2px;
+    width: calc(100% - 1.7rem);
+
+    background-color: var(--secondary);
+
+    border-radius: 99px;
+
+    transition: transform $transition;
+    transform-origin: center;
+  }
+
+  &:hover {
+    color: var(--secondary);
+
+    background-color:
+      color-mix(in srgb, var(--secondary) 8%, transparent);
+
+    &::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+  }
+
+  &.active {
+    color: var(--secondary);
+    font-weight: 600;
+
+    &::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+  }
+}
+
+// ── Right cluster ─────────────────────────────
+.rightCluster {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+// ── CTA button ────────────────────────────────
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  padding: 0.5rem 1.1rem;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  color: var(--foreground);
+
+  background-color: var(--secondary);
+
+  border: 2px solid var(--secondary);
+  border-radius: 8px;
+
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color $transition,
+    color $transition,
+    transform 100ms ease;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--secondary);
+
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  :global(html.dark) & {
+    color: var(--background);
+
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+// ── Mobile hamburger ──────────────────────────
+.hamburger {
+  display: none;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  width: 40px;
+  height: 40px;
+
+  background: var(--navbarcolor);
+
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+
+  cursor: pointer;
+  padding: 0;
+
+  transition: border-color $transition;
+
+  &:hover {
+    border-color: var(--secondary);
+
+    .bar {
+      background-color: var(--secondary);
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+}
+
+.bar {
+  width: 18px;
+  height: 2px;
+
+  background-color: var(--foreground);
+
+  border-radius: 2px;
+
+  transition:
+    background-color $transition,
+    transform 250ms ease,
+    opacity 200ms ease;
+
+  :global(html.dark) & {
+    background-color: var(--background);
+  }
+}
+
+.hamburger:hover .bar {
+  background-color: var(--secondary);
+}
+
+// animated × when open
+.hamburger.isOpen {
+  border-color: var(--secondary);
+
+  .bar {
+    background-color: var(--secondary);
+  }
+
+  .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+// ── Mobile drawer ─────────────────────────────
+.mobileMenu {
+  display: none;
+
+  flex-direction: column;
+  gap: 0.25rem;
+
+  padding: 0.75rem 1.25rem 1.25rem;
+
+  border-top: 2px solid var(--accent);
+
+  background-color: var(--navbarcolor);
+
+  animation: slideDown 200ms ease forwards;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+}
+
+.mobileNavLink {
+  display: block;
+
+  padding: 0.65rem 0.75rem;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  color: var(--foreground);
+
+  text-decoration: none;
+  border-radius: 8px;
+
+  transition:
+    color $transition,
+    background-color $transition;
+
+  cursor: pointer;
+
+  &:hover {
+    color: var(--secondary);
+
+    background-color:
+      color-mix(in srgb, var(--secondary) 8%, transparent);
+  }
+
+  &.active {
+    color: var(--secondary);
+    font-weight: 600;
+  }
+}
+
+.mobileDivider {
+  height: 1px;
+
+  background-color: var(--accent);
+
+  margin: 0.5rem 0.75rem;
+
+  opacity: 0.5;
+}
+
+.mobileCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.4rem;
+
+  margin-top: 0.5rem;
+
+  padding: 0.7rem 1rem;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  color: var(--foreground);
+
+  background-color: var(--secondary);
+
+  border: 2px solid var(--secondary);
+  border-radius: 8px;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  transition:
+    background-color $transition,
+    color $transition;
+
+  &:hover {
+    background-color: transparent;
+    color: var(--secondary);
+  }
+
+  :global(html.dark) & {
+    color: var(--background);
+
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+}
+
+// ── Animations ────────────────────────────────
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

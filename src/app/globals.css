@@ -6,22 +6,24 @@
 	/* light */
 	--background: #f5f3f0;
 	--foreground: #1B4332;
-
+	--navbarcolor:#ffffff;
+	
 	--primary: #2D6A4F;
 	--secondary: #95D5B2;
 	--accent: #cf6e3a;
-
+	
 	--card: #ffffff;
 	--border: #d7d7d7;
 }
 
 .dark {
 	/* dark */
-	--background: #161616;
+	--background: #1d1d1d;
 	--foreground: #dbffef;
+	--navbarcolor:#4b4a4a;
 
-	--primary: #5ecf9c;
-	--secondary: #44a06f;
+	--secondary: #5ecf9c;
+	--primary: #44a06f;
 	--accent: #cf6e3a;
 
 	--card: #1f1f1f;

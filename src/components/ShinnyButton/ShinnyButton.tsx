@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "./AuthButton.module.scss";
+import styles from "./ShinnyButton.module.scss";
 
 interface AuthButtonProps {
   onClick: () => void;
