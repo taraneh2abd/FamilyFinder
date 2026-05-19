@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import styles from "./Navbar.module.scss";
 
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Features", href: "/features" },
-  { label: "About", href: "/about" },
+  { label: "چت روم ها", href: "/chatrooms" },
+  { label: "آگهی ها", href: "/posters" },
+  { label: "درباره ما", href: "/aboutus" },
 ];
 
 export default function Navbar() {
@@ -18,24 +20,30 @@ export default function Navbar() {
       <div className={styles.inner}>
 
         {/* LOGO */}
-        <a href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           Family<span>Finder</span>
-        </a>
+        </Link>
 
         {/* DESKTOP NAV */}
         <nav className={styles.desktopNav}>
           {NAV_LINKS.map(({ label, href }) => (
-            <a key={label} href={href} className={styles.navLink}>
+            <Link
+              key={label}
+              href={href}
+              className={styles.navLink}
+            >
               {label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        {/* RIGHT CLUSTER */}
+        {/* RIGHT SIDE */}
         <div className={styles.rightCluster}>
-          <a href="/signup" className={styles.ctaBtn}>
-            Get Started
-          </a>
+
+          {/* فقط LOGIN */}
+          <Link href="/auth/login" className={styles.ctaBtn}>
+                        ورود / پروفایل
+          </Link>
 
           <ThemeToggle />
 
@@ -53,23 +61,30 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE DRAWER */}
+      {/* MOBILE MENU */}
       {open && (
         <div className={styles.mobileMenu}>
           {NAV_LINKS.map(({ label, href }) => (
-            <a
+            <Link
               key={label}
               href={href}
               className={styles.mobileNavLink}
               onClick={() => setOpen(false)}
             >
               {label}
-            </a>
+            </Link>
           ))}
+
           <div className={styles.mobileDivider} />
-          <a href="/signup" className={styles.mobileCtaBtn}>
-            Get Started
-          </a>
+
+          {/* فقط LOGIN */}
+          <Link
+            href="/auth/login"
+            className={styles.mobileCtaBtn}
+            onClick={() => setOpen(false)}
+          >
+                        ورود / پروفایل
+          </Link>
         </div>
       )}
     </header>

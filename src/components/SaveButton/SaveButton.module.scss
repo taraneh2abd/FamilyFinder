@@ -1,0 +1,36 @@
+.button {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background-color: var(--accent);
+  color: #fff;
+
+  border: none;            /* 🚫 مهم */
+  outline: none;
+  box-shadow: none;
+
+  transition: all 0.2s ease;
+
+  /* جلوگیری از rendering weird edge */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &:hover {
+    background-color: var(--primary);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:active {
+    transform: scale(0.85);
+  }
+}

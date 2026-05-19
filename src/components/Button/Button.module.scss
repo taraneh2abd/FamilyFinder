@@ -1,0 +1,122 @@
+/* ─────────────────────────────────────────────
+   Button.module.scss
+   ───────────────────────────────────────────── */
+
+$transition: 200ms ease;
+
+// ── BASE BUTTON ───────────────────────────────
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  padding: 0.55rem 1.15rem;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  border-radius: 8px;
+  border: 2px solid transparent;
+
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+
+  transition:
+    background-color $transition,
+    color $transition,
+    border-color $transition,
+    transform 100ms ease,
+    box-shadow $transition;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ── VARIANTS ──────────────────────────────────
+
+// Primary (مثل CTA)
+.primary {
+  background-color: var(--secondary);
+  color: var(--foreground);
+  border-color: var(--secondary);
+
+  &:hover {
+    background-color: transparent;
+    color: var(--secondary);
+  }
+
+  :global(html.dark) & {
+    color: var(--background);
+
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+}
+
+// Secondary (خنثی)
+.secondary {
+  background-color: var(--background);
+  color: var(--foreground);
+  border-color: var(--border);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--secondary) 10%, transparent);
+    border-color: var(--secondary);
+  }
+}
+
+// Destructive
+.destructive {
+  background-color: var(--accent);
+  color: white;
+  border-color: var(--accent);
+
+  &:hover {
+    background-color: transparent;
+    color: var(--accent);
+  }
+}
+
+// Outline
+.outline {
+  background-color: var(--navbarcolor);
+  color: var(--foreground);
+  border-color: var(--border);
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  :global(html.dark) & {
+    color: var(--foreground);
+  }
+}
+
+// ── SIZE VARIANTS ─────────────────────────────
+.sm {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+.lg {
+  padding: 0.75rem 1.4rem;
+  font-size: 1rem;
+}
+
+// ── ICON SUPPORT ──────────────────────────────
+.iconOnly {
+  padding: 0.55rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+}

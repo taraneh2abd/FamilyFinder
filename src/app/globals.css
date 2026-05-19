@@ -1,3 +1,8 @@
+@import "@fontsource/vazirmatn/300.css";
+@import "@fontsource/vazirmatn/400.css";
+@import "@fontsource/vazirmatn/500.css";
+@import "@fontsource/vazirmatn/700.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,12 +11,12 @@
 	/* light */
 	--background: #f5f3f0;
 	--foreground: #1B4332;
-	--navbarcolor:#ffffff;
-	
+	--navbarcolor: #ffffff;
+
 	--primary: #2D6A4F;
 	--secondary: #95D5B2;
 	--accent: #cf6e3a;
-	
+
 	--card: #ffffff;
 	--border: #d7d7d7;
 }
@@ -20,7 +25,7 @@
 	/* dark */
 	--background: #1d1d1d;
 	--foreground: #dbffef;
-	--navbarcolor:#4b4a4a;
+	--navbarcolor: #4b4a4a;
 
 	--secondary: #5ecf9c;
 	--primary: #44a06f;
@@ -46,18 +51,28 @@ html {
 	transition:
 		background-color 0.25s ease,
 		color 0.25s ease;
+
+	font-family: "Vazirmatn", sans-serif;
 }
 
 body {
 	background-color: var(--background);
 	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
+
+	font-family: "Vazirmatn", sans-serif;
+
 	min-height: 100vh;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	text-rendering: optimizeLegibility;
 }
 
 @layer base {
 	* {
 		border-color: var(--border);
+		box-sizing: border-box;
 	}
 
 	.rtl {

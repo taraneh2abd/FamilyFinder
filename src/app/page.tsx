@@ -1,24 +1,71 @@
 "use client";
+import { toast } from "sonner";
+import Button from "@/components/Button/Button";
+import Input from "@/components/Input/Input";
+import SaveButton from "@/components/SaveButton/SaveButton";
 
-import ThemeToggle from "@/components/theme/ThemeToggle";
-import Navbar from "@/components/Navbar/Navbar";
+export default function ToastDemo() {
+  return (
+    <div className="min-h-screen flex items-center justify-center p-10">
+    <div
+      className="w-[500px] max-w-4xl h-[400px] flex flex-col items-center justify-center rounded-[20px] shadow-lg"
+      style={{
+        backgroundColor: "var(--navbarcolor)",
+        gap: "30px",
+      }}
+    >
+<div className="flex items-center" style={{ gap: "12px" }}>
+  <Input placeholder="Enter text..." />
+  <SaveButton />
+</div>
+<div className="flex items-center" style={{ gap: "12px" }}>
+  <Input placeholder="Enter text..." />
+  <SaveButton />
+</div>
 
-import React, { useState } from "react";
-
-export default function Home() {
-	const [loading, setLoading] = useState(false);
-
-	return (
-		<div className="min-h-screen bg-[var(--background)] transition-all duration-300">
-			
-			{/* NAVBAR */}
-			<Navbar />
-
-			<div className="max-w-6xl mx-auto px-6 py-10">
-
-				{/* HEADER */}
-
-			</div>
-		</div>
-	);
-} 	
+        <div className="flex flex-wrap gap-3 justify-center">
+          <Button
+            variant="primary"
+            onClick={() =>
+              toast.success("عملیات موفق بود", {
+                description: "اطلاعات با موفقیت ذخیره شد",
+              })
+            }
+          >
+            primary
+          </Button>
+          <Button
+            variant="destructive"
+            onClick={() =>
+              toast.error("خطا رخ داد", {
+                description: "لطفاً دوباره تلاش کنید",
+              })
+            }
+          >
+            destructive
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() =>
+              toast("پیام عادی", {
+                description: "این یک toast معمولی است",
+              })
+            }
+          >
+            secondary
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast("پیام عادی", {
+                description: "این یک toast معمولی است",
+              })
+            }
+          >
+            outline
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
