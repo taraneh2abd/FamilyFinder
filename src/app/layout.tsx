@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
 import { Toaster } from "sonner";
 
 const geistSans = Geist({
@@ -26,13 +27,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-          <body
+      <body 
       suppressHydrationWarning  // ← این رو اضافه کن
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
-        				<Navbar />
+      className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col min-h-screen`}>
+  <Navbar />
+  <main className="flex-1"> {/* ← این مهمه */}
+    {children}
+  </main>
+  <Footer />
 
-        {children}
         <Toaster
           richColors
           position="top-right"
