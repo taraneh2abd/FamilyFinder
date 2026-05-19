@@ -6,7 +6,7 @@ import { useDesktopTablet } from "@/hooks/ResponsiveHooks";
 
 import bottomRightImage from "@/assets/images/53.png";
 import topLeftImage from "@/assets/images/Vector56.svg";
-import mobileBackgroundImage from "@/assets/images/login-signup-mobile-background.png";
+import mobileBackgroundImage from "@/assets/images/w.jpg";
 
 import { cn } from "@/lib/utils";
 
@@ -44,8 +44,21 @@ export default function AuthBackground({
 							zIndex: 0,
 						}}
 					/>
-
 					<img
+						src={topLeftImage.src}
+						alt="Paw icon top left"
+						style={{
+							position: "fixed",
+							top: 0,
+							left: 0,
+							height: loginPage ? "60vh" : "55vh",
+							width: "auto",
+							pointerEvents: "none",
+							zIndex: 0,
+						}}
+					/>
+
+<img
 						src={bottomRightImage.src}
 						alt="Bone icon bottom right"
 						style={{

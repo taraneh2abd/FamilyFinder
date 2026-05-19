@@ -13,7 +13,8 @@ export default function ToastDemo() {
         backgroundColor: "var(--navbarcolor)",
         gap: "30px",
       }}
-    >
+      >
+        سرچ یوزر و آگهی هردو....
 <div className="flex items-center" style={{ gap: "12px" }}>
   <Input placeholder="Enter text..." />
   <SaveButton />

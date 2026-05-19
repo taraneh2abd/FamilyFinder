@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
 import { Toaster } from "sonner";
+
+import "./globals.css";
+
+import Navbar from "@/components/Navbar/Navbar";
+import HideableFooter from "@/components/Footer/HideableFooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,20 +29,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body 
-      suppressHydrationWarning  // ← این رو اضافه کن
-      className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col min-h-screen`}>
-  <Navbar />
-  <main className="flex-1"> {/* ← این مهمه */}
-    {children}
-  </main>
-  <Footer />
+      <body
+        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+      >
+        {/* Navbar */}
+        <Navbar />
 
+        {/* Main Content */}
+        <main className="flex-1">
+          {children}
+        </main>
+
+        {/* Footer (hidden on auth pages) */}
+        <HideableFooter />
+
+        {/* Global Toasts */}
         <Toaster
           richColors
           position="top-right"
           closeButton
           expand
+          duration={4000}
+          toastOptions={{
+            style: {
+              borderRadius: "12px",
+            },
+          }}
         />
       </body>
     </html>

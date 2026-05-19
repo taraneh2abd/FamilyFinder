@@ -40,7 +40,6 @@ export default function ThemeToggle() {
 			onCheckedChange={setIsDark}
 			className={styles.toggle}
 		>
-			{/* LEFT ICON */}
 			<div className={styles.iconLeft}>
 				<SunIcon
 					className={`${styles.icon} ${
@@ -49,7 +48,6 @@ export default function ThemeToggle() {
 				/>
 			</div>
 
-			{/* RIGHT ICON */}
 			<div className={styles.iconRight}>
 				<MoonIcon
 					className={`${styles.icon} ${
@@ -58,7 +56,6 @@ export default function ThemeToggle() {
 				/>
 			</div>
 
-			{/* THUMB */}
 			<SwitchPrimitives.Thumb
 				className={`${styles.thumb} ${
 					isDark ? styles.checked : ""

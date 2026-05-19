@@ -11,13 +11,12 @@
   background-color: var(--accent);
   color: #fff;
 
-  border: none;            /* 🚫 مهم */
+  border: none;            
   outline: none;
   box-shadow: none;
 
   transition: all 0.2s ease;
 
-  /* جلوگیری از rendering weird edge */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
